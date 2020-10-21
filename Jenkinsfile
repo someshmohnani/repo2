@@ -25,7 +25,7 @@ pipeline
 			{
 				success
 				{
-					pmd pattern:target/pmd.xml
+					pmd pattern:'target/pmd.xml'
 				}
 			}
 		}
@@ -39,7 +39,7 @@ pipeline
 			{
 				success
 				{
-					junit testResults:target/surefire-reports/*.xml
+					junit testResults:'target/surefire-reports/*.xml'
 				}
 			}
 		}
