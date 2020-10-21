@@ -8,13 +8,6 @@ pipeline
 	agent any
 	stages
 	{
-		stage('Checkout')
-		{
-			steps
-			{
-				git 'https://github.com/someshmohnani/repo2.git'
-			}
-		}
 		stage('CodeCompile')
 		{
 			steps
