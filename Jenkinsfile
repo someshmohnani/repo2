@@ -27,7 +27,7 @@ pipeline
 			{
 				success
 				{
-					pmd pattern:target/pmd.xml
+					pmd pattern:'target/pmd.xml'
 				}
 			}
 		}
@@ -59,7 +59,8 @@ pipeline
 			agent {label 'win_slave'}
 			steps
 			{
-				sh 'mvn package'
+				git 'https://github.com/someshmohnani/repo2.git'
+				bat 'mvn package'
 			}
 		}
 	}
