@@ -5,11 +5,12 @@ pipeline
 		jdk 'myjava'
 		maven 'mymaven'
 	}
-	agent any
+	agent none
 	stages
 	{
 		stage('CodeCompile')
 		{
+			agent any
 			steps
 			{
 				sh 'mvn compile'
@@ -17,6 +18,7 @@ pipeline
 		}
 		stage('CodeReview')
 		{
+			agent any
 			steps
 			{
 				sh 'mvn pmd:pmd'
@@ -25,12 +27,13 @@ pipeline
 			{
 				success
 				{
-					pmd pattern:'target/pmd.xml'
+					pmd pattern:target/pmd.xml
 				}
 			}
 		}
 		stage('UnitTest')
 		{
+			agent any
 			steps
 			{
 				sh 'mvn test'
@@ -45,6 +48,7 @@ pipeline
 		}
 		stage('MetricCheck')
 		{
+			agent any
 			steps
 			{
 				sh 'mvn cobertura:cobertura -Dcobertura.report.format=xml'
@@ -52,6 +56,7 @@ pipeline
 		}
 		stage('Package')
 		{
+			agent {label 'win_slave'}
 			steps
 			{
 				sh 'mvn package'
